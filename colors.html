@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>canvas</title>
+<style>
+convas#cv {
+    border-style: solid;
+    border-width: 1px;
+}
+</style>
+<script>
+
+window.onload = drawing;
+
+function drawing()
+{
+	var pix_per_color = 1;
+	var cv = document.getElementById("cv");
+	console.log(cv.width, cv.height);
+
+	var cvcontext = cv.getContext("2d");
+	for (r = 0; r < 256; r++) {
+		for (g = 0; g < 256; g++) {
+			for (b = 0; b < 256; b++) {
+				var x = (r % 16) * 256 + b
+				var y = (r / 16 | 0) * 256 + g
+
+				cvcontext.strokeStyle = "rgb(" + r + "," + g + "," + b + ")";
+				cvcontext.fillStyle =  "rgb(" + r + "," + g + "," + b + ")";
+				cvcontext.fillRect(x, y, pix_per_color, pix_per_color);
+			}
+		}
+	}
+}
+
+</script>
+</head>
+<body>
+<p>RGB 256段階 全16,777,216色</p>
+<canvas id="cv" width="4096" height="4096"></canvas>
+</body>
+</html>
